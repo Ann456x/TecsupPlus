@@ -11,11 +11,27 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
-@Database(entities = [CursoEntity::class, AsistenciaEntity::class, UsuarioEntity::class], version = 10, exportSchema = false)
+@Database(
+    entities = [
+        CursoEntity::class,
+        AsistenciaEntity::class,
+        UsuarioEntity::class,
+        RegistroAsistenciaPersistenteEntity::class,
+        RegistroNotaPersistenteEntity::class,
+        NearpodQuizEntity::class,
+        NearpodResultadoEntity::class,
+        CursoEnlaceEntity::class,
+        PerfilUsuarioExtraEntity::class,
+        ComentarioMuroEntity::class
+    ],
+    version = 11,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cursoDao(): CursoDao
     abstract fun asistenciaDao(): AsistenciaDao
     abstract fun usuarioDao(): UsuarioDao
+    abstract fun extraDao(): TecsupExtraDao
 
     companion object {
         @Volatile

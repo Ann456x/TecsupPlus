@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:shortcutId="shortcut_calificaciones"
+        android:shortcutShortLabel="@string/app_name">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.tecsup.tecsupplus.MainActivity"
+            android:targetPackage="com.tecsup.tecsupplus" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:shortcutId="shortcut_mapa"
+        android:shortcutShortLabel="@string/app_name">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.tecsup.tecsupplus.MainActivity"
+            android:targetPackage="com.tecsup.tecsupplus" />
+    </shortcut>
+</shortcuts>

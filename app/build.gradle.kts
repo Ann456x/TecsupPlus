@@ -1,11 +1,13 @@
-﻿import java.util.Properties
-
-plugins {
+﻿plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
 }
+
+import java.util.Properties
+
+
 
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
@@ -18,6 +20,12 @@ android {
     compileSdk = 34
 
     defaultConfig {
+        val localPropertiesFile = rootProject.file("local.properties")
+        val mapsKey = if (localPropertiesFile.exists()) {
+            localPropertiesFile.readLines().firstOrNull { it.startsWith("MAPS_API_KEY=") }?.substringAfter("=")?.trim() ?: ""
+        } else ""
+        manifestPlaceholders["MAPS_API_KEY"] = mapsKey
+        buildConfigField("String", "MAPS_API_KEY", "\"$mapsKey\"")
         applicationId = "com.tecsup.tecsupplus"
         minSdk = 24
         targetSdk = 34
@@ -69,6 +77,12 @@ android {
 }
 
 dependencies {
+    val mapsComposeVersion = "4.4.1"
+    implementation("com.google.maps.android:maps-compose:$mapsComposeVersion")
+    implementation("com.google.maps.android:maps-compose-utils:$mapsComposeVersion")
+    implementation("com.google.maps.android:maps-compose-widgets:$mapsComposeVersion")
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")

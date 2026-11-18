@@ -16,6 +16,7 @@ import com.tecsup.tecsupplus.ui.view.LoginScreen
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        com.tecsup.tecsupplus.worker.ClaseReminderWorker.programarRecordatorios(this)
         // Inicializar Room Database
         AppDatabase.getDatabase(applicationContext)
 

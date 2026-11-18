@@ -3,7 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<application
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+        <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+        <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -23,7 +31,19 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+                    <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts" />
         </activity>
+            <receiver
+            android:name=".widget.TecsupWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/tecsup_widget_info" />
+        </receiver>
+            <meta-data android:name="com.google.android.geo.API_KEY" android:value="${MAPS_API_KEY}" />
     </application>
 
 </manifest>
